@@ -4,6 +4,10 @@ block content
   h1= title
   a(href='/') back home
   p Please log in below if you have an account.
+  div
+    if errors
+      each error, index in errors
+        p= error
   form(action='/users/login' method='post')
     p
       label Email Address

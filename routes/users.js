@@ -29,10 +29,8 @@ router.post('/signin', function (req, res) {
     errors.push("* password inputs don't match")
   }
   if (errors.length>0) {
-    console.log(errors);
     res.render('signup', {errors: errors})
   } else {
-    console.log(errors);
     userdb.insert({email: req.session.email, password: hash}, function (err, credentials) {
       res.redirect('success');
     })
@@ -61,8 +59,19 @@ router.get('/login', function(req, res, next) {
 });
 
 
-router.post('/login', function (req, res, next) {
-  userdb.findOne({email: req.body.email}, function (err, user) {
+
+router.post('/login', function (req, res) {
+  var errors = [];
+  if (!req.body.email.trim()) {
+    errors.push("* email can't be blank")
+  }
+  if (!req.body.password.trim()) {
+    errors.push("* password can't be blank")
+  }
+  if (errors.length>0) {
+    res.render('login', {errors: errors})
+  } else {
+    userdb.findOne({email: req.body.email}, function (err, user) {
     if (user) {
       var comparedHash = bcrypt.compareSync(req.body.password, user.password)
       if (comparedHash) {
@@ -75,6 +84,7 @@ router.post('/login', function (req, res, next) {
       res.redirect('users/login');
     }
   });
-});
+  }
+})
 
 module.exports = router;
