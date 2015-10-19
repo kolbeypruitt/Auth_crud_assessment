@@ -4,7 +4,11 @@ block content
   h1= title
   a(href='/') back home
   p Please sign up below if you're new here.
-  form(type='/signin' method='post')
+  div
+    if errors
+      each error, index in errors
+        p= error
+  form(action='/users/signin' method='post')
     p
       label Email Address
         input(type='email' name='email')
