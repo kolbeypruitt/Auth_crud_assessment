@@ -1,5 +1,10 @@
 extends ../layout
 
 block content
+  p
+    a(href="/students") Back
   h1= theStudent.name
-  a(href="/students/" + theStudent._id + '/edit') Edit
+  p
+    a(href="/students/" + theStudent._id + '/edit') Edit
+  p
+    a(href="/students/" + theStudent._id + '/remove') Remove

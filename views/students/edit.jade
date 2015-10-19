@@ -1,11 +1,14 @@
 extends ../layout
 
 block content
+  a(href="/students") Back
   h1= theStudent.name
   form(action="/students/" + theStudent._id + '/update', method="post")
-    div
-      Name
-      input(type="text" name="student_name")
+    p
+      label Name
+        input(type="text" name="student_name" value=theStudent.name)
+    p
+      label Phone Number
+        input(type="tel" name="student_phone" value=theStudent.phone)
     div
       input(type="submit")
-  a(href="/students") Back

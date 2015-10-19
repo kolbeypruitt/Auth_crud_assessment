@@ -13,4 +13,9 @@ router.get('/students', function(req, res, next) {
     res.render('students/index', {allStudents: records});
   });
 });
+
+router.get('/signout', function(req, res, next) {
+  req.session = null;
+  res.render('index', { title: "You've been signed out"});
+});
 module.exports = router;

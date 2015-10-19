@@ -7,7 +7,9 @@ var studentdb = db.get('students');
 
 /* GET students listing. */
 router.get('/', function(req, res, next) {
-  res.render('students/index', { title: 'students page' });
+  studentdb.find({}, function (err, records) {
+    res.render('students/index', {allStudents: records});
+  });
 });
 
 router.post('/', function(req, res, next) {
@@ -34,4 +36,19 @@ router.get('/:id/edit', function(req, res, next) {
   });
 });
 
+router.post('/:id/update', function(req, res, next) {
+  studentdb.update({ _id: req.params.id }, { name: req.body.student_name, phone: req.body.student_phone }, function(err, student) {
+    studentdb.find({}, function (err, records) {
+      res.render('students/index', {allStudents: records});
+    });
+  });
+});
+
+router.get('/:id/remove', function(req, res, next) {
+  studentdb.remove({_id: req.params.id}, function (err, record) {
+    studentdb.find({}, function (err, records) {
+      res.render('students/index', {allStudents: records});
+    });
+  });
+});
 module.exports = router
