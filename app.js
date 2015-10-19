@@ -9,6 +9,7 @@ require('dotenv').load();
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var students = require('./routes/students');
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use(session({
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/students', students);
 
 
 
