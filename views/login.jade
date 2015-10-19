@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  a(href='/') back home
+  p Please log in below if you have an account.
+  form(type='/signin' method='post')
+    p
+      label Email Address
+        input(type='email' name='email')
+    p
+      label Password
+        input(type='password' name='password')
+  a(href='/login') Log In
