@@ -13,11 +13,22 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  studentdb.insert({ name: req.body.student_name, phone: req.body.student_phone }, function(err, student) {
-    studentdb.find({}, function (err, records) {
-      res.render('students/index', {allStudents: records});
+  var errors = [];
+  if (!req.body.student_name.trim()) {
+    errors.push("* student's name must be provided")
+  }
+  if (!req.body.student_phone.trim()) {
+    errors.push("* student's phone number must be provided")
+  }
+  if (errors.length>0) {
+    res.render('students/add', {errors: errors})
+  } else {
+    studentdb.insert({ name: req.body.student_name, phone: req.body.student_phone }, function(err, student) {
+      studentdb.find({}, function (err, records) {
+        res.render('students/index', {allStudents: records});
+      });
     });
-  });
+  }
 });
 
 router.get('/add', function(req, res, next) {

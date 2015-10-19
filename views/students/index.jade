@@ -2,6 +2,10 @@ extends ../layout
 
 block content
   h1= title
+  div
+    if errors
+      each error, index in errors
+        p= error
   table
     thead
       tr

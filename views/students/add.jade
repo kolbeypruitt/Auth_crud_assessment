@@ -3,6 +3,9 @@ extends ../layout
 block content
   a(href="/students") Back
   h1 New Student
+  if errors
+      each error, index in errors
+        p= error
   form(action="/students", method="post")
     p
       label Name
