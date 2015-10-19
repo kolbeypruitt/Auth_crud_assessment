@@ -2,8 +2,8 @@ stories:
 
 Requirements for the assessment:
 
-User can sign up
-User must provide an email and password (provide validations for missing fields)
+** User can sign up
+** User must provide an email and password (provide validations for missing fields)
 ** User gets signed in after a valid sign up
 ** User can sign in
 ** User can sign out
