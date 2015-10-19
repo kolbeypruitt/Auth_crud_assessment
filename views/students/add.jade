@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+  h1 New Student
+  form(action="/students", method="post")
+    p
+      label Name
+        input(type="text" name="student_name")
+    p
+      label Phone Number
+        input(type="tel" name="student_phone")
+    div
+      input(type="submit")

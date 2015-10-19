@@ -1,20 +1,19 @@
-extends layout
+extends ../layout
 
 block content
   h1= title
-  a(href="/albums/new") New Album
   table
     thead
       tr
-        th ID
         th Name
+        th Phone
+        th ID
     tbody
       for student in allStudents
         tr
-          td= student._id
           td
             a(href='/students/' + student._id)= student.name
+          td= student.phone
+          td= student._id
   p
     a(href='students/add') add student
-  p
-    a(href='students/remove') remove student

@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+  h1= theStudent.name
+  form(action="/students/" + theStudent._id + '/update', method="post")
+    div
+      Name
+      input(type="text" name="student_name")
+    div
+      input(type="submit")
+  a(href="/students") Back

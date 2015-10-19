@@ -1,0 +1,5 @@
+extends ../layout
+
+block content
+  h1= theStudent.name
+  a(href="/students/" + theStudent._id + '/edit') Edit
